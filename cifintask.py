@@ -10,11 +10,13 @@ WSUNS = \
 
 user = '90681'
 password = 'H33std'
-url = 'http://cifinpruebas.asobancaria.com/InformacionComercialactWS/services/InformacionComercial?wsdl'
+url = 'http://cifinpruebas.asobancaria.com/InformacionComercialWS/services/InformacionComercial?wsdl'
+location='http://cifinpruebas.asobancaria.com/InformacionComercialactWS/services/InformacionComercial'
+
 
 crendials = dict(username=user, password=password)
 t = HttpAuthenticated(**crendials)
-client = Client(url=url, transport=t)
+client = Client(url=url, transport=t, location=location)
 print client
 parametrosConsulta = client.factory.create('{http://dto.infocomercial.cifin.asobancaria.com}ParametrosConsultaDTO')
 
@@ -39,7 +41,8 @@ logging.getLogger('suds.transport').setLevel(logging.DEBUG)
 logging.getLogger('suds.xsd.schema').setLevel(logging.DEBUG)
 logging.getLogger('suds.wsdl').setLevel(logging.DEBUG)
 
-# res = client.service.consultaXml(parametrosConsulta)
-# print res
+client.set_options(port='InformacionComercial')
+res = client.service.consultaXml(parametrosConsulta)
+print res
 
 

@@ -7,7 +7,8 @@ from requests import Session
 
 user = '90681'
 password = 'H33std'
-url = 'http://cifinpruebas.asobancaria.com/InformacionComercialactWS/services/InformacionComercial?wsdl'
+url = 'http://cifinpruebas.asobancaria.com/InformacionComercialWS/services/InformacionComercial?wsdl'
+location='http://cifinpruebas.asobancaria.com/InformacionComercialactWS/services/InformacionComercial'
 crendials = dict(username=user, password=password)
 session = Session()
 session.auth = HTTPBasicAuth(user, password)
@@ -31,7 +32,7 @@ numeroIdentificacion = strin('1143356938')
 tipoIdentificacion = strin('1')
 
 
-print client.service.__getattr__('consultaXml')(parametrosConsulta=parametroCon(codigoInformacion=codigoInformacion,
-                                                             motivoConsulta=motivoConsulta,
-                                                             numeroIdentificacion=numeroIdentificacion,
-                                                             tipoIdentificacion=tipoIdentificacion))
+print client.service.consultaXml(parametroCon(codigoInformacion=codigoInformacion,
+                                              motivoConsulta=motivoConsulta,
+                                              numeroIdentificacion=numeroIdentificacion,
+                                              tipoIdentificacion=tipoIdentificacion))
